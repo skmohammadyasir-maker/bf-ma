@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Black Force 007 — Hooghly Map Missions</title>
+  <meta name="description" content="Black Force 007 — Hooghly district Map Mission (Singur, Police Station, Village, Pairaurah). Mobile first." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">Black Force <span>007</span></div>
+      <div class="status">
+        Rank: <strong id="rankName">Cadet</strong> · XP: <strong id="playerXP">0</strong>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <h2>Hooghly — Map Missions</h2>
+        <p class="muted">Singur কেন্দ্রিক মিশন। প্রতিটি লোকে ক্লিক করে মিশন সম্পন্ন করো — XP ও Rank বাড়বে।</p>
+
+        <!-- MAP: simple SVG -->
+        <div class="mapWrap">
+          <svg id="mapSvg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet">
+            <!-- background grid for cyber look -->
+            <defs>
+              <filter id="glow"><feGaussianBlur stdDeviation="3.5" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+
+            <rect x="0" y="0" width="800" height="500" fill="#041016"></rect>
+
+            <!-- approximate regions / shapes (stylized) -->
+            <!-- Singur -->
+            <g class="zone" data-id="singur" transform="translate(120,120)">
+              <circle cx="0" cy="0" r="36" class="marker" />
+              <text x="50" y="6">Singur</text>
+            </g>
+
+            <!-- Police Station -->
+            <g class="zone" data-id="police" transform="translate(420,90)">
+              <rect x="-36" y="-32" width="72" height="56" rx="8" class="marker" />
+              <text x="50" y="8">Police Station</text>
+            </g>
+
+            <!-- Village -->
+            <g class="zone" data-id="village" transform="translate(240,300)">
+              <polygon points="-32,24 0,-28 32,24" class="marker" />
+              <text x="50" y="8">Village</text>
+            </g>
+
+            <!-- Pairaurah -->
+            <g class="zone" data-id="pairaurah" transform="translate(560,300)">
+              <ellipse cx="0" cy="0" rx="36" ry="26" class="marker" />
+              <text x="50" y="8">Pairaurah</text>
+            </g>
+
+            <!-- radar center -->
+            <circle cx="400" cy="250" r="6" fill="#00e5ff" opacity="0.12"/>
+          </svg>
+        </div>
+
+        <div class="legend">
+          <div><span class="dot inactive"></span> Locked</div>
+          <div><span class="dot done"></span> Completed</div>
+        </div>
+      </section>
+
+      <!-- Mission Modal -->
+      <div id="missionModal" class="modal hidden">
+        <div class="modalCard">
+          <div class="modalHeader">
+            <h3 id="missionTitle">Mission</h3>
+            <button id="closeModal" class="iconBtn">✖</button>
+          </div>
+
+          <div id="missionBody" class="modalBody">
+            <p id="missionDesc">Mission description...</p>
+            <div id="questionBox" class="questionBox">
+              <div id="qMeta">Q <span id="qIndex">1</span>/<span id="qTotal">1</span> · <span id="timer">20</span>s</div>
+              <h4 id="qText">Question text</h4>
+              <div id="qOptions" class="options"></div>
+            </div>
+            <div class="modalFooter">
+              <button id="nextQ" class="primary" disabled>Next</button>
+              <button id="abortMission" class="secondary">Abort</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast" class="toast hidden"></div>
+    </main>
+
+    <footer class="foot">
+      <small>Black Force 007 · Hooghly Map Mission · Saved locally</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
